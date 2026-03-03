@@ -4,49 +4,127 @@
     <meta charset="utf-8" />
     <title>DisisRadio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#003366" />
+    <meta name="theme-color" content="#002266" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="/icons/icon-192x192.png" />
     <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
     <style>
+      /* sfondo nero sfumato tipo radio */
       body {
         margin: 0;
         padding: 20px;
         font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-        background-color: #000000;
+        background: #000000;
+        background-image: radial-gradient(circle at 20% 70%, #003366 0%, transparent 30%),
+          linear-gradient(45deg, #000033, #000000);
         color: #fff;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* titolo e logo */
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        color: #00d1ff;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(0, 209, 255, 0.8);
+      }
+
+      /* banner sopra il player */
+      .banner {
+        width: 100%;
+        max-width: 350px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(0, 209, 255, 0.4);
+        border-radius: 12px;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 0 15px rgba(0, 209, 255, 0.3);
         text-align: center;
+        font-size: 14px;
+        opacity: 0.95;
       }
-      h1 {
-        margin-top: 40px;
+
+      .banner strong {
+        color: #00d1ff;
       }
+
+      /* player */
       .player {
-        margin: 40px auto;
+        width: 100%;
         max-width: 300px;
+        background: rgba(0, 0, 30, 0.7);
+        border: 1px solid rgba(0, 209, 255, 0.4);
+        border-radius: 16px;
+        padding: 20px 15px;
+        box-shadow: 0 0 20px rgba(0, 209, 255, 0.2);
       }
+
+      /* pulsante play */
       button {
-        margin: 10px;
-        padding: 12px 20px;
+        margin: 12px 0;
+        padding: 14px 24px;
         font-size: 16px;
+        font-weight: 600;
         border: none;
         border-radius: 30px;
-        background: #003366;
+        background: linear-gradient(135deg, #0040a0, #002066);
         color: #fff;
         cursor: pointer;
+        box-shadow: 0 0 15px rgba(0, 209, 255, 0.4);
+        letter-spacing: 0.5px;
       }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
       button:disabled {
         background: #444;
+        opacity: 0.7;
         cursor: not-allowed;
       }
+
+      /* stato sotto il pulsante */
       .status {
-        margin-top: 20px;
-        font-size: 14px;
-        color: #ccc;
+        margin-top: 12px;
+        font-size: 13px;
+        color: #999;
+        text-align: center;
+      }
+
+      .status.highlight {
+        color: #00d1ff;
+        font-weight: 600;
+      }
+
+      /* responsive su piccolo schermo */
+      @media (max-width: 350px) {
+        .player {
+          max-width: 280px;
+        }
+        .logo {
+          font-size: 22px;
+        }
+        button {
+          font-size: 15px;
+        }
       }
     </style>
   </head>
   <body>
-    <h1>DisisRadio</h1>
+    <h1 class="logo">DISISRADIO</h1>
+
+    <div class="banner">
+      <strong>DisisRadio</strong> – Radio dal Molise, Italia
+    </div>
 
     <div class="player">
       <audio id="radio" preload="auto"></audio>
